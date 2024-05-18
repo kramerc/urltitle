@@ -71,3 +71,4 @@ NETLOC_OVERRIDES: Dict[str, Dict[str, Any]] = {
     },
 }
 NETLOC_OVERRIDES["m.youtube.com"] = NETLOC_OVERRIDES["youtu.be"] = NETLOC_OVERRIDES["youtube.com"]
+NETLOC_OVERRIDES["old.reddit.com"] = NETLOC_OVERRIDES["reddit.com"]
