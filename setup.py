@@ -16,14 +16,20 @@ def parse_requirements(filename: str) -> List[str]:
     return distutils.text_file.TextFile(filename=str(_DIR / filename)).readlines()
 
 
+version = None
+try:
+    cast(Match, re.fullmatch(r"refs/tags/v?(?P<ver>\S+)", os.environ["GITHUB_REF"]))["ver"] # Ex: GITHUB_REF="refs/tags/1.2.3"; version="1.2.3"
+except KeyError:
+    version = "0.0.0"
+
 setup(
     name="urltitle",
     author="Ouroboros Chrysopoeia",
     author_email="impredicative@users.noreply.github.com",
-    version=cast(Match, re.fullmatch(r"refs/tags/v?(?P<ver>\S+)", os.environ["GITHUB_REF"]))["ver"],  # Ex: GITHUB_REF="refs/tags/1.2.3"; version="1.2.3"
+    version=version,
     description="Get page title for URL",
     keywords="url title",
-    long_description=(_DIR / "README.md").read_text().strip(),
+    long_description=(_DIR / "README.md").read_text(encoding="utf8").strip(),
     long_description_content_type="text/markdown",
     url="https://github.com/impredicative/urltitle/",
     packages=find_packages(exclude=["scripts"]),
