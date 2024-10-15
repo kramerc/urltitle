@@ -138,7 +138,8 @@ class URLTitleReader:
             try:
                 tor_handler = BaseHandler()
                 if overrides.get("use_tor", False):
-                    tor_handler = SocksiPyHandler(socks.SOCKS5, "localhost", 9050)
+                    # TODO: Make Tor proxy settings configurable
+                    tor_handler = SocksiPyHandler(socks.SOCKS5, "host.docker.internal", 9050)
                 opener = build_opener(
                     CustomHTTPRedirectHandler(),  # Required for annemergmed.com
                     HTTPCookieProcessor(),  # Required for cell.com, tandfonline.com, etc.
