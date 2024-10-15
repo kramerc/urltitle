@@ -141,10 +141,10 @@ class URLTitleReader:
                     # TODO: Make Tor proxy settings configurable
                     tor_handler = SocksiPyHandler(socks.SOCKS5, "host.docker.internal", 9050)
                 opener = build_opener(
+                    tor_handler, # Required for reddit.com, etc.
                     CustomHTTPRedirectHandler(),  # Required for annemergmed.com
                     HTTPCookieProcessor(),  # Required for cell.com, tandfonline.com, etc.
                     HTTPSHandler(context=self._ssl_context),  # Required for https://verizon.net, etc.
-                    tor_handler, # Required for reddit.com, etc.
                 )
                 request = Request(url, headers={"Accept": "*/*", "User-Agent": user_agent, **overrides.get("extra_headers", {})})
                 start_time = time.monotonic()
