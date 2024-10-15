@@ -51,7 +51,7 @@ NETLOC_OVERRIDES: Dict[str, Dict[str, Any]] = {
     "outline.com": {"user_agent": "Googlebot-News"},
     "pdfs.semanticscholar.org": {"url_subs": [(r"//pdfs\.semanticscholar.org/(?P<id1>.+?)/(?P<id2>.+?)\.pdf$", r"//semanticscholar.org/paper/\g<id1>\g<id2>")]},
     "pubs.acs.org": {"url_subs": [(r"^https://(?P<url>.+)$", r"http://\g<url>")]},
-    "reddit.com": {"extra_headers": {"Cookie": "reddit_session=1"}},
+    "reddit.com": {"user_agent": "Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/115.0", "use_tor": True},
     "researchgate.net": {
         "url_subs": [(r"researchgate\.net/profile/(?P<author>.+?)/publication/(?P<pub>.+?)/links/.+?\.pdf$", r"researchgate.net/profile/\g<author>/publication/\g<pub>")]
     },

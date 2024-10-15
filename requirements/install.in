@@ -2,3 +2,4 @@ beautifulsoup4>=4.9.1
 cachetools>=4.1.1
 humanize>=2.6.0
 pikepdf>=1.18.0
+pysocks>=1.7.1

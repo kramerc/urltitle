@@ -1,6 +1,7 @@
 """URL title reader."""
 import logging
 import re
+import socks
 import ssl
 import time
 import zlib
@@ -13,10 +14,11 @@ from statistics import mean
 from typing import Dict, Optional, Tuple, Union, cast
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlparse
-from urllib.request import HTTPCookieProcessor, HTTPSHandler, Request, build_opener
+from urllib.request import BaseHandler, HTTPCookieProcessor, HTTPSHandler, Request, build_opener
 
 from bs4 import BeautifulSoup, SoupStrainer
 from cachetools.func import LFUCache, ttl_cache  # type: ignore
+from sockshandler import SocksiPyHandler
 
 from . import config
 from .util.humanize import humanize_bytes, humanize_len
@@ -134,10 +136,14 @@ class URLTitleReader:
             # Request
             log.debug("Starting attempt %s processing %s", num_attempt, request_desc)
             try:
+                tor_handler = BaseHandler()
+                if overrides.get("use_tor", False):
+                    tor_handler = SocksiPyHandler(socks.SOCKS5, "localhost", 9050)
                 opener = build_opener(
                     CustomHTTPRedirectHandler(),  # Required for annemergmed.com
                     HTTPCookieProcessor(),  # Required for cell.com, tandfonline.com, etc.
                     HTTPSHandler(context=self._ssl_context),  # Required for https://verizon.net, etc.
+                    tor_handler, # Required for reddit.com, etc.
                 )
                 request = Request(url, headers={"Accept": "*/*", "User-Agent": user_agent, **overrides.get("extra_headers", {})})
                 start_time = time.monotonic()
