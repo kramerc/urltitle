@@ -73,7 +73,7 @@ TEST_CASES = {
     "https://www.wsj.com/articles/iran-says-new-sanctions-close-the-door-on-diplomacy-with-u-s-11561449138?mod=hp_lead_pos3": "Trump, Iran Step Up Rhetoric After Washington’s Sanctions Threat - WSJ",
     "https://www.youtube.com/watch?v=53YvP6gdD7U": "Deep Learning State of the Art (2019) - MIT - YouTube",
     "https://m.youtube.com/watch?v=GltlJO56S1g": "Jeff Bezos In 1999 On Amazon's Plans Before The Dotcom Crash - YouTube",
-    "https://old.reddit.com/r/TheSimpsons/comments/1cumxvp/i_cant_see_through_metal_kent/" : "I can't see through metal, Kent. : TheSimpsons",
+    "https://old.reddit.com/r/TheSimpsons/comments/1cumxvp/i_cant_see_through_metal_kent/" : "I can't see through metal, Kent! : TheSimpsons",
     # Missing scheme:
     "neverssl.com": "NeverSSL - helping you get online",
     "reddit.com/r/FoodNerds/comments/arb6qj": "Paternal high-fat diet transgenerationally impacts hepatic immunometabolism. - PubMed - NCBI : FoodNerds",
@@ -153,7 +153,7 @@ TEST_CASES_WITH_BAD_SSL = {
 }
 # pylint: enable=line-too-long
 
-URL_FILTER = ["https://google.com", ""][0]
+URL_FILTER = ["https://old.reddit.com", ""][0]
 
 
 # pylint: disable=missing-class-docstring,missing-function-docstring
