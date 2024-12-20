@@ -55,6 +55,7 @@ NETLOC_OVERRIDES: Dict[str, Dict[str, Any]] = {
     "reddit.com": {
         "url_subs": [
             (r"old\.reddit\.com(?P<url>.+)$", r"old.reddittorjg6rue252oqsxryoxengawnmo46qy4kyii5wtqnwfj4ooad.onion\g<url>"),
+            (r"www\.reddit\.com(?P<url>.+)$", r"old.reddittorjg6rue252oqsxryoxengawnmo46qy4kyii5wtqnwfj4ooad.onion\g<url>"),
             (r"reddit\.com(?P<url>.+)$", r"old.reddittorjg6rue252oqsxryoxengawnmo46qy4kyii5wtqnwfj4ooad.onion\g<url>"),
         ],
     },
